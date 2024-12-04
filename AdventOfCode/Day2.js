@@ -1,37 +1,37 @@
 import { readFileSync } from 'node:fs';
 
-const input = readFileSync('./inputs/day02.txt', 'utf8').trimEnd();
+const data = readFileSync('./inputs/day02.txt', 'utf8').trimEnd();
 
-function solve(input, part) {
-  function isSafe(nums, nErrs = 0) {
-    const posDir = nums[1] > nums[0];
-    for (let i = 1; i < nums.length; i++) {
-      const num = nums[i];
-      const prevNum = nums[i - 1];
+function evaluatePart(data, stage) {
+  function isSequenceSafe(numbers, errorCount = 0) {
+    const isIncreasing = numbers[1] > numbers[0];
+    for (let i = 1; i < numbers.length; i++) {
+      const currentNum = numbers[i];
+      const previousNum = numbers[i - 1];
       if (
-        posDir
-          ? num <= prevNum || num - 3 > prevNum
-          : num >= prevNum || num + 3 < prevNum
+        isIncreasing
+          ? currentNum <= previousNum || currentNum - 3 > previousNum
+          : currentNum >= previousNum || currentNum + 3 < previousNum
       ) {
-        if (part === 1 || nErrs === 1) {
+        if (stage === 1 || errorCount === 1) {
           return false;
         }
-        const next1 = nums.toSpliced(i - 1, 1);
-        const next2 = nums.toSpliced(i, 1);
-        const next3 = nums.toSpliced(0, 1);
-        return isSafe(next1, 1) || isSafe(next2, 1) || isSafe(next3, 1);
+        const modified1 = numbers.toSpliced(i - 1, 1);
+        const modified2 = numbers.toSpliced(i, 1);
+        const modified3 = numbers.toSpliced(0, 1);
+        return isSequenceSafe(modified1, 1) || isSequenceSafe(modified2, 1) || isSequenceSafe(modified3, 1);
       }
     }
     return true;
   }
 
-  const lines = input.split('\n');
-  let counts = 0;
+  const lines = data.split('\n');
+  let validCount = 0;
   for (let line of lines) {
-    const nums = line.split(' ').map(Number);
-    counts += +isSafe(nums);
+    const numbers = line.split(' ').map(Number);
+    validCount += +isSequenceSafe(numbers);
   }
-  console.log(counts);
+  console.log(validCount);
 }
-solve(input, 1);
-solve(input, 2);
+evaluatePart(data, 1);
+evaluatePart(data, 2);

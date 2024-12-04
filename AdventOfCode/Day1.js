@@ -1,41 +1,41 @@
 import { readFileSync } from 'node:fs';
 
-const input = readFileSync('./inputs/day01.txt', 'utf8').trimEnd();
+const fileContent = readFileSync('./inputs/day01.txt', 'utf8').trimEnd();
 
-function solve1(input) {
-  const lines = input.split('\n');
-  const lefts = [];
-  const rights = [];
+function computePart1(fileContent) {
+  const lines = fileContent.split('\n');
+  const leftValues = [];
+  const rightValues = [];
   for (const line of lines) {
-    const [a, b] = line.split(/\s+/);
-    lefts.push(+a);
-    rights.push(+b);
+    const [left, right] = line.split(/\s+/);
+    leftValues.push(+left);
+    rightValues.push(+right);
   }
-  lefts.sort((a, b) => a - b);
-  rights.sort((a, b) => a - b);
-  let sum = 0;
-  for (let i = 0; i < lefts.length; i++) {
-    sum += Math.abs(lefts[i] - rights[i]);
+  leftValues.sort((a, b) => a - b);
+  rightValues.sort((a, b) => a - b);
+  let totalSum = 0;
+  for (let i = 0; i < leftValues.length; i++) {
+    totalSum += Math.abs(leftValues[i] - rightValues[i]);
   }
-  console.log(sum);
+  console.log(totalSum);
 }
-solve1(input);
+computePart1(fileContent);
 
-function solve2(input) {
-  const lines = input.split('\n');
-  const lefts = [];
-  const rights = {};
+function computePart2(fileContent) {
+  const lines = fileContent.split('\n');
+  const leftValues = [];
+  const rightCount = {};
   for (const line of lines) {
-    const [a, b] = line.split(/\s+/);
-    lefts.push(+a);
-    rights[b] ??= 0;
-    rights[b]++;
+    const [left, right] = line.split(/\s+/);
+    leftValues.push(+left);
+    rightCount[right] ??= 0;
+    rightCount[right]++;
   }
-  let sum = 0;
-  for (let i = 0; i < lefts.length; i++) {
-    const n = lefts[i];
-    sum += n * (rights[n] ?? 0);
+  let totalSum = 0;
+  for (let i = 0; i < leftValues.length; i++) {
+    const value = leftValues[i];
+    totalSum += value * (rightCount[value] ?? 0);
   }
-  console.log(sum);
+  console.log(totalSum);
 }
-solve2(input);
+computePart2(fileContent);
