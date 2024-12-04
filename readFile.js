@@ -1,9 +1,8 @@
 import { readFileSync } from 'node:fs';
 
-var input = ``;
-var input = readFileSync('./inputs/day02.txt', 'utf8').trimEnd();
+let fileContent = readFileSync('./inputs/day02.txt', 'utf8').trimEnd();
 
-function readFile(input) {
-  console.log(input);
+function displayContent(content) {
+  console.log(content);
 }
-readFile(input);
+displayContent(fileContent);
