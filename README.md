@@ -12,6 +12,7 @@ This repository contains my solutions to each day's puzzle from the **Advent of 
 - **Day 02:** Solved a sequence safety problem. Part 1 checks if a sequence of numbers is safe based on a set of conditions involving directionality and differences. Part 2 modifies the sequence by removing elements and rechecking the sequence's safety based on specific rules.
 - **Day 03:** Solved a pattern matching problem with a focus on multiplication. Part 1 and Part 2 involved parsing a set of multiplication operations and calculating the sum of products based on certain conditions. The solution involved regex pattern matching to extract the values and compute the sum.
 - **Day 04:** Solved grid traversal and directional pattern matching. Part 1 identifies and counts occurrences of 'X' surrounded by a specific sequence of symbols ('M', 'A', 'S') in all eight directions. Part 2 checks for a flipped pattern between 'M' and 'S' symbols adjacent to 'A' in a specific configuration, and counts the valid occurrences.
+- **Day 05:** Solved sorting chaos with rules and updates. Part 1 validated updates already sorted based on rules and calculated a result, while Part 2 sorted updates dynamically before calculating the outcome. Debugging input formatting and implementing a custom sort condition were the highlights
 
 
 ## Installation
